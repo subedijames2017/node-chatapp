@@ -1,20 +1,29 @@
 let socket = io()
-socket.on('connect', ()=>{
+socket.on('connect', () => {
     console.log("Connected to the server");
 })
 
-socket.on('newMessage', (message)=>{
-    console.log("New Message", message)
+socket.on('newMessage', (message) => {
+    console.log("New Message", message);
+    let li = $('<li></li>');
+    li.text(`${message.from}: ${message.text}`)
+
+    $('#messages').append(li);
+
 })
 
-socket.emit('createMessage', {
-    from: "newcheckUser@hotmail.com",
-    text: "what is goin on guys!"
-}, (data)=>{
-    console.log("Message from the server: ", data)
-})
-
-socket.on('disconnect', ()=>{
+socket.on('disconnect', () => {
     console.log("Disconnected from the server")
+})
+
+document.getElementById("message-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    socket.emit("createMessage", {
+        from: 'User',
+        text: document.getElementById('usermessage').value
+    }, () => {
+
+    })
 })
 

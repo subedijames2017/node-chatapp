@@ -12,15 +12,25 @@ const io = socketIO(server)
 
 app.use(express.static(publicPath));
 
-io.on('connection', (socket)=>{
+io.on('connection', (socket) => {
     console.log("New User connected!");
 
-socket.on('disconnect', ()=>{
-    console.log("User disconnected")
-})
+    socket.emit('newEmail', {
+        from: "john@example.com",
+        subject: "cool thing to say",
+        text: "I'm not bragging but Imma be an aswesome programmer in near future"
+    })
+
+    socket.on('createEmail', (email) => {
+        console.log("New email created", email);
+    })
+
+    socket.on('disconnect', () => {
+        console.log("User disconnected")
+    })
 })
 
 
-server.listen(PORT, ()=>{
+server.listen(PORT, () => {
     console.log(`App listening at port ${PORT}`)
 })

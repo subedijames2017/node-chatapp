@@ -25,5 +25,6 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
     }, () => {
 
     })
+    document.getElementById('usermessage').value=""
 })
 

@@ -5,6 +5,7 @@ socket.on('connect', () => {
 
 socket.on('newMessage', (message) => {
     console.log("New Message", message);
+    //Jquery code ---> Needs to be written in Vanilla JS
     let li = $('<li></li>');
     li.text(`${message.from}: ${message.text}`)
 
@@ -25,6 +26,6 @@ document.getElementById("message-form").addEventListener("submit", (e) => {
     }, () => {
 
     })
-    document.getElementById('usermessage').value=""
+    document.getElementById('usermessage').value = ""
 })
 

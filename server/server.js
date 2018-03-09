@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
     })
     
 
-    socket.emit('newMessage',generateMessage('Admin', 'Welcome to the chat app'));
+    socket.emit('newMessage',generateMessage('Admin', "Welcome to UJJAL's private chat room"));
 
     socket.broadcast.emit('newMessage',generateMessage('Admin', 'New User joined'));
 

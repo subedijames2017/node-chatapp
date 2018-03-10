@@ -4,12 +4,24 @@ socket.on('connect', () => {
 })
 
 socket.on('newMessage', (message) => {
-    let formattedTime = moment(message.createdAt).format('h: mm a')
-    //Jquery code ---> Needs to be written in Vanilla JS
-    let li = $('<li></li>');
-    li.text(`${message.from} (${formattedTime}): ${message.text}`)
+    let formattedTime = moment(message.createdAt).format('h:mm a')
+    let template = $('#message-template').html();
+    let html = Mustache.render(template, {
+        from: message.from,
+        text: message.text,
+        createdAt: formattedTime
+    })
 
-    $('#messages').append(li);
+    $('#messages').append(html);
+
+
+
+    // let formattedTime = moment(message.createdAt).format('h: mm a')
+    // //Jquery code ---> Needs to be written in Vanilla JS
+    // let li = $('<li></li>');
+    // li.text(`${message.from} (${formattedTime}): ${message.text}`)
+
+    // $('#messages').append(li);
 
 })
 

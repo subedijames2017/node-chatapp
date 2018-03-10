@@ -21,11 +21,6 @@ io.on('connection', (socket) => {
         io.emit('newMessage',generateMessage(message.from, message.text));
         callback('Message sent');
 
-        // socket.broadcast.emit('newMessage', {
-        //     from: message.from,
-        //     text: message.text,
-        //     createAt: new Date().getTime()
-        // })
     })
     
 

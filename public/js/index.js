@@ -4,10 +4,10 @@ socket.on('connect', () => {
 })
 
 socket.on('newMessage', (message) => {
-    console.log("New Message", message);
+    let formattedTime = moment(message.createdAt).format('h: mm a')
     //Jquery code ---> Needs to be written in Vanilla JS
     let li = $('<li></li>');
-    li.text(`${message.from}: ${message.text}`)
+    li.text(`${message.from} (${formattedTime}): ${message.text}`)
 
     $('#messages').append(li);
 
